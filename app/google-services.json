@@ -1,0 +1,121 @@
+{
+  "project_info": {
+    "project_number": "887699640716",
+    "project_id": "kotl-19224",
+    "storage_bucket": "kotl-19224.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887699640716:android:0527882dffff01137c06a9",
+        "android_client_info": {
+          "package_name": "com.example.calendar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887699640716-u56q0preoo49obshf657bh849tdlcrl6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.calendar",
+            "certificate_hash": "2b9ff306952ad51e4c5389b9f9529b453595c7a8"
+          }
+        },
+        {
+          "client_id": "887699640716-n77uap6e4g8bd45k545l48mof8akdpmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJXgtkn2p1KT_hLfyNFtxGgniKJxh6H4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887699640716-n77uap6e4g8bd45k545l48mof8akdpmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887699640716:android:6f259113517c8cdb7c06a9",
+        "android_client_info": {
+          "package_name": "com.example.firebaseauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887699640716-l2etvb4perhrp8j26osu4gh14rgmm3p8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebaseauth",
+            "certificate_hash": "2b9ff306952ad51e4c5389b9f9529b453595c7a8"
+          }
+        },
+        {
+          "client_id": "887699640716-n77uap6e4g8bd45k545l48mof8akdpmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJXgtkn2p1KT_hLfyNFtxGgniKJxh6H4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887699640716-n77uap6e4g8bd45k545l48mof8akdpmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887699640716:android:fddd86270ef562257c06a9",
+        "android_client_info": {
+          "package_name": "com.example.risacevents"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887699640716-le8gq40hr138v09a4u38rofj2th054fj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.risacevents",
+            "certificate_hash": "2b9ff306952ad51e4c5389b9f9529b453595c7a8"
+          }
+        },
+        {
+          "client_id": "887699640716-n77uap6e4g8bd45k545l48mof8akdpmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJXgtkn2p1KT_hLfyNFtxGgniKJxh6H4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887699640716-n77uap6e4g8bd45k545l48mof8akdpmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
