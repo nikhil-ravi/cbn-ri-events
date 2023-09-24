@@ -1,72 +1,78 @@
 package com.example.calendar.ui.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-// Material 3 color schemes
-private val DarkColorScheme = darkColorScheme(
-    primary = replyDarkPrimary,
-    onPrimary = replyDarkOnPrimary,
-    primaryContainer = replyDarkPrimaryContainer,
-    onPrimaryContainer = replyDarkOnPrimaryContainer,
-    inversePrimary = replyDarkPrimaryInverse,
-    secondary = replyDarkSecondary,
-    onSecondary = replyDarkOnSecondary,
-    secondaryContainer = replyDarkSecondaryContainer,
-    onSecondaryContainer = replyDarkOnSecondaryContainer,
-    tertiary = replyDarkTertiary,
-    onTertiary = replyDarkOnTertiary,
-    tertiaryContainer = replyDarkTertiaryContainer,
-    onTertiaryContainer = replyDarkOnTertiaryContainer,
-    error = replyDarkError,
-    onError = replyDarkOnError,
-    errorContainer = replyDarkErrorContainer,
-    onErrorContainer = replyDarkOnErrorContainer,
-    background = replyDarkBackground,
-    onBackground = replyDarkOnBackground,
-    surface = replyDarkSurface,
-    onSurface = replyDarkOnSurface,
-    inverseSurface = replyDarkInverseSurface,
-    inverseOnSurface = replyDarkInverseOnSurface,
-    surfaceVariant = replyDarkSurfaceVariant,
-    onSurfaceVariant = replyDarkOnSurfaceVariant,
-    outline = replyDarkOutline
+
+private val LightColors = lightColorScheme(
+    primary = md_theme_light_primary,
+    onPrimary = md_theme_light_onPrimary,
+    primaryContainer = md_theme_light_primaryContainer,
+    onPrimaryContainer = md_theme_light_onPrimaryContainer,
+    secondary = md_theme_light_secondary,
+    onSecondary = md_theme_light_onSecondary,
+    secondaryContainer = md_theme_light_secondaryContainer,
+    onSecondaryContainer = md_theme_light_onSecondaryContainer,
+    tertiary = md_theme_light_tertiary,
+    onTertiary = md_theme_light_onTertiary,
+    tertiaryContainer = md_theme_light_tertiaryContainer,
+    onTertiaryContainer = md_theme_light_onTertiaryContainer,
+    error = md_theme_light_error,
+    onError = md_theme_light_onError,
+    errorContainer = md_theme_light_errorContainer,
+    onErrorContainer = md_theme_light_onErrorContainer,
+    outline = md_theme_light_outline,
+    background = md_theme_light_background,
+    onBackground = md_theme_light_onBackground,
+    surface = md_theme_light_surface,
+    onSurface = md_theme_light_onSurface,
+    surfaceVariant = md_theme_light_surfaceVariant,
+    onSurfaceVariant = md_theme_light_onSurfaceVariant,
+    inverseSurface = md_theme_light_inverseSurface,
+    inverseOnSurface = md_theme_light_inverseOnSurface,
+    inversePrimary = md_theme_light_inversePrimary,
+    surfaceTint = md_theme_light_surfaceTint,
+    outlineVariant = md_theme_light_outlineVariant,
+    scrim = md_theme_light_scrim,
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = replyLightPrimary,
-    onPrimary = replyLightOnPrimary,
-    primaryContainer = replyLightPrimaryContainer,
-    onPrimaryContainer = replyLightOnPrimaryContainer,
-    inversePrimary = replyLightPrimaryInverse,
-    secondary = replyLightSecondary,
-    onSecondary = replyLightOnSecondary,
-    secondaryContainer = replyLightSecondaryContainer,
-    onSecondaryContainer = replyLightOnSecondaryContainer,
-    tertiary = replyLightTertiary,
-    onTertiary = replyLightOnTertiary,
-    tertiaryContainer = replyLightTertiaryContainer,
-    onTertiaryContainer = replyLightOnTertiaryContainer,
-    error = replyLightError,
-    onError = replyLightOnError,
-    errorContainer = replyLightErrorContainer,
-    onErrorContainer = replyLightOnErrorContainer,
-    background = replyLightBackground,
-    onBackground = replyLightOnBackground,
-    surface = replyLightSurface,
-    onSurface = replyLightOnSurface,
-    inverseSurface = replyLightInverseSurface,
-    inverseOnSurface = replyLightInverseOnSurface,
-    surfaceVariant = replyLightSurfaceVariant,
-    onSurfaceVariant = replyLightOnSurfaceVariant,
-    outline = replyLightOutline
+
+private val DarkColors = darkColorScheme(
+    primary = md_theme_dark_primary,
+    onPrimary = md_theme_dark_onPrimary,
+    primaryContainer = md_theme_dark_primaryContainer,
+    onPrimaryContainer = md_theme_dark_onPrimaryContainer,
+    secondary = md_theme_dark_secondary,
+    onSecondary = md_theme_dark_onSecondary,
+    secondaryContainer = md_theme_dark_secondaryContainer,
+    onSecondaryContainer = md_theme_dark_onSecondaryContainer,
+    tertiary = md_theme_dark_tertiary,
+    onTertiary = md_theme_dark_onTertiary,
+    tertiaryContainer = md_theme_dark_tertiaryContainer,
+    onTertiaryContainer = md_theme_dark_onTertiaryContainer,
+    error = md_theme_dark_error,
+    onError = md_theme_dark_onError,
+    errorContainer = md_theme_dark_errorContainer,
+    onErrorContainer = md_theme_dark_onErrorContainer,
+    outline = md_theme_dark_outline,
+    background = md_theme_dark_background,
+    onBackground = md_theme_dark_onBackground,
+    surface = md_theme_dark_surface,
+    onSurface = md_theme_dark_onSurface,
+    surfaceVariant = md_theme_dark_surfaceVariant,
+    onSurfaceVariant = md_theme_dark_onSurfaceVariant,
+    inverseSurface = md_theme_dark_inverseSurface,
+    inverseOnSurface = md_theme_dark_inverseOnSurface,
+    inversePrimary = md_theme_dark_inversePrimary,
+    surfaceTint = md_theme_dark_surfaceTint,
+    outlineVariant = md_theme_dark_outlineVariant,
+    scrim = md_theme_dark_scrim,
 )
 
 @Composable
@@ -75,12 +81,12 @@ fun CalendarTheme(
     content: @Composable() () -> Unit
 ) {
     // Dynamic color is available on Android 12+
-    val dynamicColor = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+    val dynamicColor = false //Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     val colors = when {
         dynamicColor && useDarkTheme -> dynamicDarkColorScheme(LocalContext.current)
         dynamicColor && !useDarkTheme -> dynamicLightColorScheme(LocalContext.current)
-        useDarkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        useDarkTheme -> DarkColors
+        else -> LightColors
     }
 
     MaterialTheme(

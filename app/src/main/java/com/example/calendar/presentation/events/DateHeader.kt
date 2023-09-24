@@ -11,6 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.calendar.ui.theme.CalendarTheme
 
 @Composable
 fun DateHeader(
@@ -23,13 +24,23 @@ fun DateHeader(
         fontWeight = FontWeight.Bold,
         modifier = modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primaryContainer)
-            .padding(16.dp)
+            .background(color = MaterialTheme.colorScheme.surfaceContainerHigh)
+            .padding(16.dp),
     )
 }
 
 @Composable
 @Preview
-fun DateHeaderPreview() {
-    DateHeader(date = "2023-01-01")
+fun LightDateHeaderPreview() {
+    CalendarTheme(useDarkTheme = false) {
+        DateHeader(date = "2021-01-01")
+    }
+}
+
+@Composable
+@Preview
+fun DarkDateHeaderPreview() {
+    CalendarTheme(useDarkTheme = true) {
+        DateHeader(date = "2021-01-01")
+    }
 }
