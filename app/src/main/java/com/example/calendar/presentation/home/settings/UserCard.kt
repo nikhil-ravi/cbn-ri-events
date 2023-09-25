@@ -1,4 +1,4 @@
-package com.example.calendar.presentation.settings
+package com.example.calendar.presentation.home.settings
 
 import android.util.Log
 import androidx.compose.foundation.BorderStroke

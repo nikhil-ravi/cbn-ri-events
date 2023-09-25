@@ -6,11 +6,11 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.example.calendar.BuildConfig
+import com.example.calendar.core.Constants
 import com.example.calendar.data.local.EventDatabase
 import com.example.calendar.data.local.EventEntity
 import com.example.calendar.data.local.NextPageTokenEntity
 import com.example.calendar.data.mappers.toEventEntity
-import com.example.calendar.core.Constants
 import retrofit2.HttpException
 import java.io.IOException
 import java.time.ZonedDateTime

@@ -1,4 +1,4 @@
-package com.example.calendar.presentation.settings
+package com.example.calendar.presentation.home.settings
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Arrangement
@@ -8,29 +8,29 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.calendar.R
+import com.google.firebase.firestore.ktx.R
 
 @Preview
 @Composable
-fun SettingsSwitchComp(
-    @DrawableRes icon: Int = R.drawable.ic_launcher_foreground,
+fun SettingsClickableComp(
+    @DrawableRes icon: Int = R.drawable.googleg_standard_color_18,
     iconDesc: String = "Icon Description",
     name: String = "Setting Name",
-    state: State<Boolean> = androidx.compose.runtime.mutableStateOf(false),
     onClick: () -> Unit = {}
 ) {
     Surface(
@@ -54,18 +54,24 @@ fun SettingsSwitchComp(
                         modifier = Modifier
                             .size(36.dp)
                     )
+                    Spacer(modifier = Modifier.size(8.dp))
                     Text(
                         text = name,
-                        modifier = Modifier.padding(16.dp),
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            color = MaterialTheme.colorScheme.onSurface
+                        ),
+                        modifier = Modifier
+                            .padding(16.dp),
                         textAlign = TextAlign.Start,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    Spacer(modifier = Modifier.weight(1.0f))
+                    Icon(
+                        Icons.AutoMirrored.Rounded.KeyboardArrowRight,
+                        tint = MaterialTheme.colorScheme.surfaceTint,
+                        contentDescription = "Arrow Right",
                     )
                 }
-                Spacer(modifier = Modifier.weight(1f))
-                Switch(
-                    checked = state.value,
-                    onCheckedChange = { onClick() }
-                )
             }
         }
     }

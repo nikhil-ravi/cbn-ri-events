@@ -1,16 +1,14 @@
-package com.example.calendar.presentation.events
+package com.example.calendar.presentation.home.events
 
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -23,7 +21,8 @@ import com.example.calendar.domain.events.Event
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun EventScreen(
-    events: LazyPagingItems<Event>
+    events: LazyPagingItems<Event>,
+    onEventFavorite: (String) -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -36,14 +35,13 @@ fun EventScreen(
             ).show()
         }
     }
-    Surface(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colorScheme.surface)
     ) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-//            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
 
             ) {
@@ -74,6 +72,7 @@ fun EventScreen(
                         HorizontalDivider()
                         EventItem(
                             event = event,
+                            onEventFavorite = onEventFavorite,
                             modifier = Modifier
                                 .fillMaxSize()
                         )

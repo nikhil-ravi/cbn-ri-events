@@ -1,4 +1,4 @@
-package com.example.calendar.presentation.events
+package com.example.calendar.presentation.home.events
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,99 +34,115 @@ import com.example.calendar.ui.theme.CalendarTheme
 
 
 @Composable
-fun EventItem(event: Event, modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(10.dp)
-//            .background(MaterialTheme.colorScheme.primaryContainer)
+fun EventItem(
+    event: Event,
+    onEventFavorite: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.surface)
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth(),
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+//            .background(MaterialTheme.colorScheme.primaryContainer)
         ) {
-            if (event.startTime!!.isNotEmpty()) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth(),
+            ) {
+                if (event.startTime!!.isNotEmpty()) {
+                    Text(
+                        text = event.startTime,
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp,
+                        )
+                    )
+                    Separator()
+                }
                 Text(
-                    text = event.startTime,
+                    text = event.duration!!,
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp,
                     )
                 )
-                Separator()
+                if (event.description.instructor != null) {
+                    Separator()
+                    Text(
+                        text = event.description.instructor,
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp,
+                        ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
             }
-            Text(
-                text = event.duration!!,
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                )
-            )
-            if (event.description.instructor != null) {
-                Separator()
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Text(
-                    text = event.description.instructor,
+                    text = event.summary ?: "Event Name",
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp,
+                        fontSize = 24.sp,
+                        color =
+                        if (event.description.special)
+                            Color(0xFFFF6292)
+                        else
+                            MaterialTheme.colorScheme.onSurfaceVariant,
+                        textDecoration =
+                        if (event.description.cancelled)
+                            TextDecoration.LineThrough
+                        else
+                            TextDecoration.None
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
             }
-        }
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                text = event.summary ?: "Event Name",
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp,
-                    color =
-                    if (event.description.special)
-                        Color.Magenta
-                    else
-                        MaterialTheme.colorScheme.onSurfaceVariant,
-                ),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                text = event.location ?: "Location",
-                style = TextStyle(
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 16.sp,
-                ),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(end = 8.dp),
-            )
-            IconButton(
-                onClick = { /*TODO*/ },
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.surface)
-                    .size(24.dp)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Icon(
-                    imageVector = Icons.Default.Star,
-                    contentDescription = "Favorite",
-                    tint = MaterialTheme.colorScheme.outline,
+                Text(
+                    text = event.location ?: "Roosevelt Island Senior Center",
+                    style = TextStyle(
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 16.sp,
+                    ),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 8.dp),
                 )
+                IconButton(
+                    onClick = {
+                        onEventFavorite(event.id)
+                    },
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.surface)
+                        .size(24.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Star,
+                        contentDescription = "Favorite",
+                        tint = MaterialTheme.colorScheme.outline,
+                    )
+                }
             }
         }
     }
@@ -161,7 +179,8 @@ fun SpecialEventItemPreviewLight() {
                 date = "2023-07-01",
                 duration = "All day",
                 status = "confirmed",
-            )
+            ),
+            onEventFavorite = {}
         )
     }
 }
@@ -182,7 +201,8 @@ fun SpecialEventItemPreviewDark() {
                 date = "2023-07-01",
                 duration = "All day",
                 status = "confirmed",
-            )
+            ),
+            onEventFavorite = {}
         )
     }
 }
@@ -204,7 +224,8 @@ fun NormalEventItemPreviewDark() {
                 date = "2023-07-01",
                 duration = "1h 20 min",
                 status = "cancelled",
-            )
+            ),
+            onEventFavorite = {}
         )
     }
 }
@@ -226,7 +247,8 @@ fun NormalEventItemPreviewLight() {
                 date = "2023-07-01",
                 duration = "1h 20 min",
                 status = "cancelled",
-            )
+            ),
+            onEventFavorite = {}
         )
     }
 }

@@ -1,14 +1,16 @@
-package com.example.calendar.presentation.events
+package com.example.calendar.presentation.home.events
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.example.calendar.data.firestore.addEventToUserFavorites
 import com.example.calendar.data.local.EventEntity
 import com.example.calendar.data.mappers.toEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import java.time.ZonedDateTime
 import javax.inject.Inject
 
@@ -24,6 +26,12 @@ class EventViewModel @Inject constructor(
             }
         }
         .cachedIn(viewModelScope)
+
+    fun addFavorite(userId: String, eventId: String) {
+        viewModelScope.launch {
+            addEventToUserFavorites(userId, eventId)
+        }
+    }
 
 // I created this to add a sticky header for each date, but the lazy column doesn't support sticky headers
 // inside the "items" scope, so I had to use a different approach
