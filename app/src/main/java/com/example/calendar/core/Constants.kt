@@ -11,6 +11,6 @@ object Constants {
     const val SINGLE_EVENTS = true
 
     const val FIELDS =
-        "nextPageToken,nextSyncToken,items(id,summary,description,start,end,location,status)"
+        "nextPageToken,nextSyncToken,items(id,summary,description,start,end,location,status,recurringEventId)"
 
 }

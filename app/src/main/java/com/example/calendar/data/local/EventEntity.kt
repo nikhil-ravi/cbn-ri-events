@@ -15,5 +15,6 @@ data class EventEntity(
     val endTimeZone: String? = null,
     val description: String? = null,
     val status: String? = null,
+    val recurringEventId: String? = null,
 )
 

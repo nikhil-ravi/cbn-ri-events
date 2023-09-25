@@ -9,5 +9,5 @@ data class Event(
     val duration: String? = null,
     val description: EventMetadata = EventMetadata(),
     val status: String? = null,
-    val favorite: Boolean = false,
+    val recurringEventId: String? = null,
 )

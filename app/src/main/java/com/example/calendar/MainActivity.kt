@@ -47,6 +47,7 @@ class MainActivity : ComponentActivity() {
 
                 val eventViewModel = hiltViewModel<EventViewModel>()
                 val eventState = eventViewModel.eventPagingFlow.collectAsLazyPagingItems()
+                val favoriteEventsState by eventViewModel.favoriteEvents.collectAsStateWithLifecycle()
 
                 val noticesViewModel = hiltViewModel<NoticesViewModel>()
                 val noticesState = noticesViewModel.noticePagingFlow.collectAsLazyPagingItems()
@@ -79,12 +80,10 @@ class MainActivity : ComponentActivity() {
                     },
                     authResetState = { authViewModel.resetState() },
                     eventsState = eventState,
+                    favoriteEventsState = favoriteEventsState,
                     onEventFavorite = { eventId: String ->
                         Log.d("MainActivity", "Attempting to add $eventId to favorites")
-                        eventViewModel.addFavorite(
-                            googleAuthUiClient.getSignedInUser()?.userId!!,
-                            eventId
-                        )
+                        eventViewModel.addFavorite(eventId)
                     },
                     noticesState = noticesState,
                 )

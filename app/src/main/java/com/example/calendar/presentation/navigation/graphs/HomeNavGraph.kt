@@ -19,6 +19,7 @@ import com.example.calendar.presentation.navigation.EventRoute
 fun HomeNavGraph(
     navController: NavHostController,
     eventsState: LazyPagingItems<Event>,
+    favoriteEventsState: List<String>,
     onSignOut: () -> Unit,
     googleAuthUiClient: GoogleAuthUiClient,
     onEventFavorite: (String) -> Unit,
@@ -32,7 +33,11 @@ fun HomeNavGraph(
         modifier = modifier
     ) {
         composable(route = EventRoute.EVENTS) {
-            EventScreen(events = eventsState, onEventFavorite = onEventFavorite)
+            EventScreen(
+                events = eventsState,
+                favoriteEvents = favoriteEventsState,
+                onEventFavorite = onEventFavorite
+            )
         }
         composable(route = EventRoute.NOTICES) {
             NoticesScreen(

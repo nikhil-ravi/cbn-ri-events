@@ -31,6 +31,20 @@ suspend fun addEventToUserFavorites(userId: String, eventId: String) {
     }
 }
 
+suspend fun removeEventFromUserFavorites(userId: String, eventId: String) {
+    val db = FirebaseFirestore.getInstance()
+
+    try {
+        db.collection("users").document(userId).update(
+            "favoriteEvents", FieldValue.arrayRemove(
+                eventId
+            )
+        ).await()
+    } catch (e: FirebaseFirestoreException) {
+        Log.d("error", "removeEventFromUserFavorites: ${e.message}")
+    }
+}
+
 suspend fun getFavoritesFromFirestore(userId: String): List<String> {
     val db = FirebaseFirestore.getInstance()
 

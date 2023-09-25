@@ -26,6 +26,7 @@ fun RootNavigationGraph(
     onSignOut: () -> Unit,
     authResetState: () -> Unit,
     eventsState: LazyPagingItems<Event>,
+    favoriteEventsState: List<String>,
     onEventFavorite: (String) -> Unit,
     noticesState: LazyPagingItems<Event>,
 ) {
@@ -50,6 +51,7 @@ fun RootNavigationGraph(
                 displayFeatures = displayFeatures,
                 googleAuthUiClient = googleAuthUiClient,
                 eventsState = eventsState,
+                favoriteEventsState = favoriteEventsState,
                 onSignOut = {
                     onSignOut()
                 },

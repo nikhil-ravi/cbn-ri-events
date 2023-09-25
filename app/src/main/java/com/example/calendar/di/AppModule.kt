@@ -10,6 +10,8 @@ import com.example.calendar.data.local.EventDatabase
 import com.example.calendar.data.local.EventEntity
 import com.example.calendar.data.remote.EventApi
 import com.example.calendar.data.remote.EventRemoteMediator
+import com.example.calendar.presentation.auth.GoogleAuthUiClient
+import com.google.android.gms.auth.api.identity.Identity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,6 +58,15 @@ object AppModule {
             pagingSourceFactory = { eventDb.dao.pagingSource() }
         )
 
+    }
+
+    @Provides
+    @Singleton
+    fun provideGoogleAuthUiClient(@ApplicationContext context: Context): GoogleAuthUiClient {
+        val googleAuthUiClient by lazy {
+            GoogleAuthUiClient(Identity.getSignInClient(context))
+        }
+        return googleAuthUiClient
     }
 
 

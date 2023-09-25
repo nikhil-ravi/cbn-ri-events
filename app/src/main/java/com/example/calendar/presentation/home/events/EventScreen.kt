@@ -1,5 +1,6 @@
 package com.example.calendar.presentation.home.events
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -22,10 +23,11 @@ import com.example.calendar.domain.events.Event
 @Composable
 fun EventScreen(
     events: LazyPagingItems<Event>,
+    favoriteEvents: List<String>,
     onEventFavorite: (String) -> Unit,
 ) {
     val context = LocalContext.current
-
+    Log.d("EventScreen", "Favorite events: $favoriteEvents")
     LaunchedEffect(key1 = events.loadState) {
         if (events.loadState.refresh is LoadState.Error) {
             Toast.makeText(
@@ -72,6 +74,8 @@ fun EventScreen(
                         HorizontalDivider()
                         EventItem(
                             event = event,
+                            favorite = favoriteEvents.contains(event.id) ||
+                                    favoriteEvents.any { event.id.startsWith(it) },
                             onEventFavorite = onEventFavorite,
                             modifier = Modifier
                                 .fillMaxSize()

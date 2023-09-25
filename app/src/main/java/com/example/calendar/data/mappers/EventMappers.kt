@@ -34,6 +34,7 @@ fun EventDto.toEventEntity(): EventEntity {
         endTimeZone = end.timeZone,
         description = description,
         status = status,
+        recurringEventId = recurringEventId,
     )
 }
 
@@ -68,6 +69,7 @@ fun EventEntity.toEvent(): Event {
         duration = duration,
         description = metadata,
         status = status,
+        recurringEventId = recurringEventId,
     )
 }
 
