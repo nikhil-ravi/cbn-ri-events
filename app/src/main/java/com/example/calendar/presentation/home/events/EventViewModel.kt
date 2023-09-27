@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.cachedIn
+import androidx.paging.filter
 import androidx.paging.map
 import com.example.calendar.data.firestore.addEventToUserFavorites
 import com.example.calendar.data.firestore.getFavoritesFromFirestore
@@ -26,14 +27,6 @@ class EventViewModel @Inject constructor(
     pager: Pager<Int, EventEntity>,
     private val googleAuthUiClient: GoogleAuthUiClient
 ) : ViewModel() {
-    val eventPagingFlow = pager
-        .flow
-        .map { pagingData ->
-            pagingData.map {
-                it.toEvent()
-            }
-        }
-        .cachedIn(viewModelScope)
 
     private val _favoriteEvents = MutableStateFlow<List<String>>(emptyList<String>())
     val favoriteEvents: StateFlow<List<String>> = _favoriteEvents.asStateFlow()
@@ -41,6 +34,18 @@ class EventViewModel @Inject constructor(
     init {
         loadFavorites()
     }
+
+    val eventPagingFlow = pager
+        .flow
+        .map { pagingData ->
+            pagingData.map {
+                it.toEvent()
+            }
+                .filter {
+                    !it.description.is_notice
+                }
+        }
+        .cachedIn(viewModelScope)
 
     fun addFavorite(eventId: String) {
         val userId = googleAuthUiClient.getSignedInUser()?.userId

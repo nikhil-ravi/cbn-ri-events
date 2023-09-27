@@ -8,4 +8,5 @@ data class EventMetadata(
     val instructor: String? = null,
     val special: Boolean = false,
     val cancelled: Boolean = false,
+    val is_notice: Boolean = false,
 )

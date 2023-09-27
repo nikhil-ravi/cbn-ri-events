@@ -57,7 +57,6 @@ object AppModule {
             remoteMediator = EventRemoteMediator(eventDb, eventApi),
             pagingSourceFactory = { eventDb.dao.pagingSource() }
         )
-
     }
 
     @Provides

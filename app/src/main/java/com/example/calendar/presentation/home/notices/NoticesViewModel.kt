@@ -22,11 +22,9 @@ class NoticesViewModel @Inject constructor(
             pagingData.map {
                 it.toEvent()
             }
-        }
-        .map { pagingData ->
-            pagingData.filter { event ->
-                event.description.cancelled
-            }
+                .filter { event ->
+                    event.description.cancelled || event.description.is_notice
+                }
         }
         .cachedIn(viewModelScope)
 }

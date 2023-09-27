@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,7 +43,7 @@ fun NoticesScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .background(MaterialTheme.colorScheme.surface)
     ) {
         if (notices.itemCount == 0 && notices.loadState.refresh != LoadState.Loading) {
             Column(
@@ -85,6 +86,7 @@ fun NoticesScreen(
                         .background(MaterialTheme.colorScheme.surface)
                         .padding(8.dp)
                 )
+                HorizontalDivider()
             }
 
             if (notices.loadState.append == LoadState.Loading) {

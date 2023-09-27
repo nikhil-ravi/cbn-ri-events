@@ -22,7 +22,13 @@ fun NoticeItem(
         modifier = modifier
             .background(MaterialTheme.colorScheme.surface)
     ) {
-
-        Text(text = "${notice.summary} originally scheduled to start at ${notice.startTime} $dateText has been cancelled.")
+        if (notice.description.cancelled) {
+            Text(
+                text = "${notice.summary} originally scheduled to start at " +
+                        "${notice.startTime} $dateText has been cancelled."
+            )
+        } else if (notice.description.is_notice) {
+            Text(text = "${notice.summary}: ${notice.description.description}")
+        }
     }
 }

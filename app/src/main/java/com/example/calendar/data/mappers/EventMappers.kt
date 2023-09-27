@@ -5,7 +5,6 @@ import com.example.calendar.data.remote.EventDto
 import com.example.calendar.domain.events.Event
 import com.example.calendar.domain.events.EventMetadata
 import kotlinx.serialization.json.Json
-import java.lang.Exception
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
