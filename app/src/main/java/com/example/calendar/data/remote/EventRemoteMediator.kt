@@ -7,8 +7,8 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.example.calendar.BuildConfig
 import com.example.calendar.core.Constants
+import com.example.calendar.data.local.DateEventsEntity
 import com.example.calendar.data.local.EventDatabase
-import com.example.calendar.data.local.EventEntity
 import com.example.calendar.data.local.NextPageTokenEntity
 import com.example.calendar.data.mappers.toEventEntity
 import retrofit2.HttpException
@@ -20,14 +20,14 @@ import java.time.format.DateTimeFormatter
 class EventRemoteMediator(
     private val eventDb: EventDatabase,
     private val eventApi: EventApi,
-) : RemoteMediator<Int, EventEntity>() {
+) : RemoteMediator<Int, DateEventsEntity>() {
 
     private val eventDao = eventDb.dao
     private val nextPageTokenDao = eventDb.nextPageTokenDao
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, EventEntity>
+        state: PagingState<Int, DateEventsEntity>
     ): MediatorResult {
         return try {
 
@@ -71,7 +71,18 @@ class EventRemoteMediator(
                     NextPageTokenEntity(nextPageToken = events.nextPageToken)
                 )
 
-                val eventEntities = events.items.map { it.toEventEntity() }
+                val eventEntities = events.items
+                    .map { it.toEventEntity() }
+                    .groupBy {
+                        ZonedDateTime.parse(it.startDateTime).toLocalDate()
+                            .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    }
+                    .map {
+                        DateEventsEntity(
+                            date = it.key,
+                            events = it.value
+                        )
+                    }
                 eventDb.dao.upsertAll(eventEntities)
             }
 

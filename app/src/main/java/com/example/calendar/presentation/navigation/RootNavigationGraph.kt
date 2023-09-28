@@ -2,6 +2,7 @@ package com.example.calendar.presentation.navigation
 
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -9,6 +10,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.window.layout.DisplayFeature
 import com.example.calendar.domain.auth.SignInResult
 import com.example.calendar.domain.auth.SignInState
+import com.example.calendar.domain.events.DateEvents
 import com.example.calendar.domain.events.Event
 import com.example.calendar.presentation.home.HomeScreen
 import com.example.calendar.presentation.auth.GoogleAuthUiClient
@@ -20,12 +22,12 @@ fun RootNavigationGraph(
     googleAuthUiClient: GoogleAuthUiClient,
     windowSize: WindowSizeClass,
     displayFeatures: List<DisplayFeature>,
-    lifecycleScope: androidx.lifecycle.LifecycleCoroutineScope,
+    lifecycleScope: LifecycleCoroutineScope,
     authState: SignInState,
     onSignInResult: (SignInResult) -> Unit,
     onSignOut: () -> Unit,
     authResetState: () -> Unit,
-    eventsState: LazyPagingItems<Event>,
+    eventsState: LazyPagingItems<DateEvents>,
     favoriteEventsState: List<String>,
     onEventFavorite: (String) -> Unit,
     noticesState: LazyPagingItems<Event>,

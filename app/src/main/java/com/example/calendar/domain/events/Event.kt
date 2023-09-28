@@ -11,3 +11,8 @@ data class Event(
     val status: String? = null,
     val recurringEventId: String? = null,
 )
+
+data class DateEvents(
+    val date: String,
+    val events: List<Event>
+)

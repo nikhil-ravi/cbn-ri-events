@@ -6,8 +6,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.room.Room
 import com.example.calendar.core.Constants
+import com.example.calendar.data.local.DateEventsEntity
 import com.example.calendar.data.local.EventDatabase
-import com.example.calendar.data.local.EventEntity
 import com.example.calendar.data.remote.EventApi
 import com.example.calendar.data.remote.EventRemoteMediator
 import com.example.calendar.presentation.auth.GoogleAuthUiClient
@@ -51,7 +51,10 @@ object AppModule {
     @OptIn(ExperimentalPagingApi::class)
     @Provides
     @Singleton
-    fun provideEventPager(eventDb: EventDatabase, eventApi: EventApi): Pager<Int, EventEntity> {
+    fun provideEventPager(
+        eventDb: EventDatabase,
+        eventApi: EventApi
+    ): Pager<Int, DateEventsEntity> {
         return Pager(
             config = PagingConfig(pageSize = Constants.MAX_RESULTS),
             remoteMediator = EventRemoteMediator(eventDb, eventApi),

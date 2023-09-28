@@ -6,19 +6,21 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.paging.compose.LazyPagingItems
+import com.example.calendar.domain.events.DateEvents
 import com.example.calendar.domain.events.Event
 import com.example.calendar.presentation.auth.GoogleAuthUiClient
 import com.example.calendar.presentation.home.events.EventScreen
 import com.example.calendar.presentation.home.notices.NoticesScreen
 import com.example.calendar.presentation.home.profile.ProfileScreen
 import com.example.calendar.presentation.home.settings.SettingsScreen
+import com.example.calendar.presentation.home.settings.info.InformationScreen
 import com.example.calendar.presentation.navigation.EventGraph
 import com.example.calendar.presentation.navigation.EventRoute
 
 @Composable
 fun HomeNavGraph(
     navController: NavHostController,
-    eventsState: LazyPagingItems<Event>,
+    eventsState: LazyPagingItems<DateEvents>,
     favoriteEventsState: List<String>,
     onSignOut: () -> Unit,
     googleAuthUiClient: GoogleAuthUiClient,
@@ -50,7 +52,11 @@ fun HomeNavGraph(
                 onSignOut = { onSignOut() },
                 navigateToProfileScreen = {
                     navController.navigate("profile")
+                },
+                navigateToInformationScreen = {
+                    navController.navigate(EventRoute.INFORMATION)
                 }
+
             )
         }
         composable(route = EventRoute.PROFILE) {
@@ -58,6 +64,9 @@ fun HomeNavGraph(
                 userData = googleAuthUiClient.getSignedInUser(),
                 onSignOut = { onSignOut() }
             )
+        }
+        composable(route = EventRoute.INFORMATION) {
+            InformationScreen()
         }
     }
 }

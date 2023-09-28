@@ -24,6 +24,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.LazyPagingItems
 import androidx.window.layout.DisplayFeature
 import androidx.window.layout.FoldingFeature
+import com.example.calendar.domain.events.DateEvents
 import com.example.calendar.domain.events.Event
 import com.example.calendar.presentation.auth.GoogleAuthUiClient
 import com.example.calendar.presentation.navigation.EventBottomNavigationBar
@@ -116,7 +117,7 @@ fun HomeScreen(
     windowSize: WindowSizeClass,
     displayFeatures: List<DisplayFeature>,
     googleAuthUiClient: GoogleAuthUiClient,
-    eventsState: LazyPagingItems<Event>,
+    eventsState: LazyPagingItems<DateEvents>,
     favoriteEventsState: List<String>,
     onSignOut: () -> Unit,
     onEventFavorite: (String) -> Unit,
@@ -218,7 +219,7 @@ private fun HomeContent(
     navigationContentPosition: EventNavigationContentPosition,
     navigateToTopLevelDestination: (EventTopLevelDestination) -> Unit,
     navController: NavHostController,
-    eventsState: LazyPagingItems<Event>,
+    eventsState: LazyPagingItems<DateEvents>,
     favoriteEventsState: List<String>,
     onSignOut: () -> Unit,
     googleAuthUiClient: GoogleAuthUiClient,

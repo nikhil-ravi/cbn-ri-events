@@ -130,4 +130,6 @@ dependencies {
     // Calendar
     implementation 'com.kizitonwose.calendar:view:2.4.0-beta01'
     implementation 'com.kizitonwose.calendar:compose:2.4.0-beta01'
+
+    implementation "androidx.compose.material:material:1.5.1"
 }

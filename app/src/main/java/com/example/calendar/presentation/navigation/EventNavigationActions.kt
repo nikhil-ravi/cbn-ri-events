@@ -20,6 +20,7 @@ object EventRoute {
     const val SETTINGS = "Settings"
     const val SETTINGS_SCREEN = "SettingsScreen"
     const val PROFILE = "Profile"
+    const val INFORMATION = "Information"
 }
 
 data class EventTopLevelDestination(

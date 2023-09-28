@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.Logout
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -28,6 +31,7 @@ fun SettingsScreen(
     vm: SettingsViewModel = SettingsViewModel(),
     onSignOut: () -> Unit = {},
     navigateToProfileScreen: () -> Unit = {},
+    navigateToInformationScreen: () -> Unit = {},
 ) {
 
     Scaffold(
@@ -65,8 +69,16 @@ fun SettingsScreen(
             }
             Spacer(modifier = Modifier.weight(1.0f))
             SettingsClickableComp(
+                name = "Information",
+                icon = Icons.Outlined.Info,
+                iconDesc = "Sign ",
+            ) {
+                navigateToInformationScreen()
+            }
+            Spacer(modifier = Modifier.weight(1.0f))
+            SettingsClickableComp(
                 name = "Sign out",
-                icon = R.drawable.outline_logout_24,
+                icon = Icons.AutoMirrored.Outlined.Logout,
                 iconDesc = "Sign ",
             ) {
                 onSignOut()

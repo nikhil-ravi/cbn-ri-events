@@ -1,5 +1,6 @@
 package com.example.calendar.ui.theme
 
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
@@ -81,7 +82,7 @@ fun CalendarTheme(
     content: @Composable() () -> Unit
 ) {
     // Dynamic color is available on Android 12+
-    val dynamicColor = false //Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+    val dynamicColor = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     val colors = when {
         dynamicColor && useDarkTheme -> dynamicDarkColorScheme(LocalContext.current)
         dynamicColor && !useDarkTheme -> dynamicLightColorScheme(LocalContext.current)

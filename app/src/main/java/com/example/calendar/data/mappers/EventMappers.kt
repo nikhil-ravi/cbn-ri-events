@@ -1,7 +1,9 @@
 package com.example.calendar.data.mappers
 
+import com.example.calendar.data.local.DateEventsEntity
 import com.example.calendar.data.local.EventEntity
 import com.example.calendar.data.remote.EventDto
+import com.example.calendar.domain.events.DateEvents
 import com.example.calendar.domain.events.Event
 import com.example.calendar.domain.events.EventMetadata
 import kotlinx.serialization.json.Json
@@ -34,6 +36,24 @@ fun EventDto.toEventEntity(): EventEntity {
         description = description,
         status = status,
         recurringEventId = recurringEventId,
+    )
+}
+
+fun DateEventsEntity.toDateEventsWithoutNotices(): DateEvents {
+    return DateEvents(
+        date = date,
+        events = events
+            .map { it.toEvent() }
+            .filter { !it.description.is_notice }
+    )
+}
+
+fun DateEventsEntity.toDateEventsOnlyNotices(): DateEvents {
+    return DateEvents(
+        date = date,
+        events = events
+            .map { it.toEvent() }
+            .filter { event -> event.description.cancelled || event.description.is_notice }
     )
 }
 

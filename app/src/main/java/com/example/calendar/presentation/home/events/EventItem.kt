@@ -13,10 +13,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -48,17 +49,28 @@ fun EventItem(
     onEventFavorite: (String) -> Unit
 ) {
     var isDialogOpen by remember { mutableStateOf(false) }
-    var userChoice by remember { mutableStateOf(false) }
 
-    Surface(
+    Card(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.surface)
+            .padding(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor =
+            if (event.description.special)
+                MaterialTheme.colorScheme.primaryContainer
+            else
+                MaterialTheme.colorScheme.secondaryContainer,
+            contentColor =
+            if (event.description.special)
+                MaterialTheme.colorScheme.onPrimaryContainer
+            else
+                MaterialTheme.colorScheme.onSecondaryContainer,
+        ),
     ) {
         Column(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(10.dp)
-//            .background(MaterialTheme.colorScheme.primaryContainer)
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -248,6 +260,28 @@ fun SpecialEventItemPreviewLight() {
 
 @Preview
 @Composable
+fun NormalEventItemPreviewLight() {
+    CalendarTheme(useDarkTheme = false) {
+        EventItem(
+            event = Event(
+                id = "1",
+                summary = "A very long event name that should be truncated",
+                location = "Test Location",
+                description = EventMetadata(
+                    instructor = "John long name Doe that should be truncated",
+                    special = false
+                ),
+                startTime = "8:30 am",
+                date = "2023-07-01",
+                duration = "1h 20 min",
+                status = "cancelled",
+            ),
+            onEventFavorite = {}
+        )
+    }
+}
+@Preview
+@Composable
 fun SpecialEventItemPreviewDark() {
     CalendarTheme(useDarkTheme = true) {
         EventItem(
@@ -272,29 +306,6 @@ fun SpecialEventItemPreviewDark() {
 @Composable
 fun NormalEventItemPreviewDark() {
     CalendarTheme(useDarkTheme = true) {
-        EventItem(
-            event = Event(
-                id = "1",
-                summary = "A very long event name that should be truncated",
-                location = "Test Location",
-                description = EventMetadata(
-                    instructor = "John long name Doe that should be truncated",
-                    special = false
-                ),
-                startTime = "8:30 am",
-                date = "2023-07-01",
-                duration = "1h 20 min",
-                status = "cancelled",
-            ),
-            onEventFavorite = {}
-        )
-    }
-}
-
-@Preview
-@Composable
-fun NormalEventItemPreviewLight() {
-    CalendarTheme(useDarkTheme = false) {
         EventItem(
             event = Event(
                 id = "1",

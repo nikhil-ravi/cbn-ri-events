@@ -5,13 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.cachedIn
-import androidx.paging.filter
 import androidx.paging.map
 import com.example.calendar.data.firestore.addEventToUserFavorites
 import com.example.calendar.data.firestore.getFavoritesFromFirestore
 import com.example.calendar.data.firestore.removeEventFromUserFavorites
-import com.example.calendar.data.local.EventEntity
-import com.example.calendar.data.mappers.toEvent
+import com.example.calendar.data.local.DateEventsEntity
+import com.example.calendar.data.mappers.toDateEventsWithoutNotices
 import com.example.calendar.presentation.auth.GoogleAuthUiClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +23,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EventViewModel @Inject constructor(
-    pager: Pager<Int, EventEntity>,
+    pager: Pager<Int, DateEventsEntity>,
     private val googleAuthUiClient: GoogleAuthUiClient
 ) : ViewModel() {
 
@@ -39,11 +38,8 @@ class EventViewModel @Inject constructor(
         .flow
         .map { pagingData ->
             pagingData.map {
-                it.toEvent()
+                it.toDateEventsWithoutNotices()
             }
-                .filter {
-                    !it.description.is_notice
-                }
         }
         .cachedIn(viewModelScope)
 

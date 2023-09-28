@@ -9,12 +9,12 @@ import androidx.room.Upsert
 interface EventDao {
 
     @Upsert
-    suspend fun upsertAll(events: List<EventEntity>)
+    suspend fun upsertAll(events: List<DateEventsEntity>)
 
-    @Query("SELECT * FROM evententity order by startDateTime asc")
-    fun pagingSource(): PagingSource<Int, EventEntity>
+    @Query("SELECT * FROM dateeventsentity order by date asc")
+    fun pagingSource(): PagingSource<Int, DateEventsEntity>
 
-    @Query("DELETE FROM evententity")
+    @Query("DELETE FROM dateeventsentity")
     suspend fun clearAll()
 
 }

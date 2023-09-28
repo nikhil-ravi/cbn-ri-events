@@ -27,7 +27,7 @@ import com.example.calendar.R
 @Preview
 @Composable
 fun SettingsSwitchComp(
-    @DrawableRes icon: Int = R.drawable.ic_launcher_foreground,
+    @DrawableRes icon: Int = R.drawable.baseline_dark_mode_24,
     iconDesc: String = "Icon Description",
     name: String = "Setting Name",
     state: State<Boolean> = androidx.compose.runtime.mutableStateOf(false),
